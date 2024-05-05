@@ -9,6 +9,7 @@ export default function SalesCharts() {
         <WeeklySalesChart />
         {/* Best Selling Products */}
         <BestSellingProductsChart />
+        
     </div>
   )
 }
