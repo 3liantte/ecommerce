@@ -13,9 +13,8 @@ export default function CustomerDataTable() {
     const pageIndexEnd = startIndex + PAGE_SIZE;
     console.log(data);
 
-    function changePage(page) {
-        console.log(page)
-    }
+    // function changePage(page) {
+    // }
 
   return (
     <div className="grid grid-cols-1 gap-4 mt-6">
@@ -122,16 +121,6 @@ export default function CustomerDataTable() {
                     Previous 
                 </button>
             </li>
-            <li>
-                <button 
-                className="flex items-center justify-center px-3 h-8 
-                leading-tight text-gray-500 bg-white border border-gray-300 
-                hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 
-                dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                    1
-                </button>
-            </li>
-
             <li>
         <button onClick={()=> setCurrentPage(currentPage + 1)}
         disabled= {(currentPage == totalPages)} 
