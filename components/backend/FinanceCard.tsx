@@ -3,11 +3,11 @@ import React from 'react'
 
 export default function FinanceCard({data}) {
   return (
-    <div className={'rounded-lg outline shadow-md p-8 text-white flex items-center flex-col gap-2'}>
+    <div className={'rounded-lg bg-white dark:bg-slate-700 shadow-md p-8 text-slate-900 dark:text-white flex items-center flex-col gap-2'}>
         {/* Cards */}
         <Layers />
         <h4>{data.title}</h4>
-        <h2 className="lg:text-2xl lg-1xl">ZAR.{data.sales}</h2>
+        <h2 className="lg:text-2xl lg-1xl">R{data.sales}</h2>
     </div>
   )
 }

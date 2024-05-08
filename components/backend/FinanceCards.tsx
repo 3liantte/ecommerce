@@ -13,11 +13,11 @@ export default function FinanceCards() {
     },
     {
       title: "This Month Sales",
-      sales: 3050000,
+      sales: 30500,
     },
     {
       title: "All-Time Sales",
-      sales: 13500350,
+      sales: 135350,
     }
 ]
 

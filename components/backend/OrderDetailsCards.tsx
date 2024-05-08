@@ -7,7 +7,7 @@ export default function OrderDetailsCards() {
   const orderStats = [
     {
       title: "Total Orders",
-      number: 5000,
+      number: 500,
       icon:  ShoppingBag,
     },
     {

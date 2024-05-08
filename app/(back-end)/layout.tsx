@@ -1,16 +1,18 @@
-import React from 'react'
+"use client"
+import React, { useEffect, useState } from 'react'
 import Sidebar from '@/components/backend/Sidebar'
 import Navbar from '@/components/backend/Navbar'
 
-export default function layout({ children }) {
+export default function layout({ children } : any) {
+  const [showSidebar,setShowSidebar] = useState(false);
   return (
     <div className='flex'>
         {/* sidebar */}
-        <Sidebar/>
+        <Sidebar />
         <div className="w-full">
             {/* Header */}
-            <Navbar/>
-            <main className="p-8 bg-slate-950 text-slate-50 min-h-screen mt-14 ml-52">
+            <Navbar />
+            <main className="p-8 bg-slate-100 dark:bg-slate-950 text-slate-50 min-h-screen mt-14 ml-52">
               {children}
             </main>
             {/* Main */}

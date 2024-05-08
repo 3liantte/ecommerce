@@ -11,13 +11,14 @@ export default function CustomerDataTable() {
     const totalPages = Math.ceil(data.length/PAGE_SIZE)
     const pageIndexStart = startIndex + 1;
     const pageIndexEnd = startIndex + PAGE_SIZE;
-    console.log(data);
+    // console.log(data);
 
     // function changePage(page) {
     // }
 
   return (
     <div className="grid grid-cols-1 gap-4 mt-6">
+        <h2 className="dark:text-white text-slate-900 font-bold mt-4">Recent Subscribers</h2>
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
     <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
