@@ -1,10 +1,8 @@
 "use client"
-import React, { useEffect, useState } from 'react'
 import Sidebar from '@/components/backend/Sidebar'
 import Navbar from '@/components/backend/Navbar'
 
 export default function layout({ children } : any) {
-  const [showSidebar,setShowSidebar] = useState(false);
   return (
     <div className='flex'>
         {/* sidebar */}
