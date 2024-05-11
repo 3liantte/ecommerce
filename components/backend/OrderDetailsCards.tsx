@@ -1,14 +1,14 @@
-import React from 'react'
-import OrderDetailsCard from './OrderDetailsCard'
-import { CheckCheck, Loader, RefreshCcw, ShoppingBag} from 'lucide-react'
-import { color } from 'chart.js/helpers';
+import React from "react";
+import OrderDetailsCard from "./OrderDetailsCard";
+import { CheckCheck, Loader, RefreshCcw, ShoppingBag } from "lucide-react";
+import { color } from "chart.js/helpers";
 
 export default function OrderDetailsCards() {
   const orderStats = [
     {
       title: "Total Orders",
       number: 500,
-      icon:  ShoppingBag,
+      icon: ShoppingBag,
     },
     {
       title: "Pending Orders",
@@ -24,22 +24,17 @@ export default function OrderDetailsCards() {
       title: "Delivered Orders",
       number: 18000,
       icon: CheckCheck,
-    }
-];
+    },
+  ];
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2
-    md:grid-cols-3 lg:grid-cols-4 gap-4 py-6">
-
-      {
-        orderStats.map((data,i)=>{
-          return(
-            <OrderDetailsCard data={data} />
-          )
-        })
-      }
-
-
+    <div
+      className="grid grid-cols-1 sm:grid-cols-2
+    md:grid-cols-3 lg:grid-cols-4 gap-4 py-6"
+    >
+      {orderStats.map((data, index) => {
+        return <OrderDetailsCard key={index} data={data} />;
+      })}
     </div>
-  )
+  );
 }
