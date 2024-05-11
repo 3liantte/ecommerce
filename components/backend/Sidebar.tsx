@@ -3,19 +3,20 @@ import React, { useState } from 'react'
 import Link from 'next/link';
 import logo from '../../public/GrocCheck_Logo-removebg.png';
 import Image from 'next/image';
-import { ChevronDown, ChevronRight, Globe2, LayoutDashboard, LogOut, Minus, Settings, ShoppingBasket, Slack, Store, Tractor, User, Users } from 'lucide-react';
+import { ChevronDown, ChevronRight, Globe2, LayoutDashboard, LogOut, Minus, Settings, ShoppingBasket, Slack, Store, Tractor, User, Users, Wallet, icons } from 'lucide-react';
 import { usePathname } from 'next/navigation';
-import path from 'path';
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible"
+import { useRouter } from 'next/navigation';
 
 
 
 export default function Sidebar() {
   const pathName = usePathname();
+  const router = useRouter();
   const sidebarLinks = [
     {
       title: "Customers",
@@ -36,6 +37,11 @@ export default function Sidebar() {
       title: "Orders",
       icon: ShoppingBasket,
       href: "/dashboard/orders"
+    },
+    {
+      title: "Wallet",
+      icon: Wallet,
+      href: "/dashboard/wallet"
     },
     {
       title: "Staff",
@@ -78,11 +84,12 @@ export default function Sidebar() {
   ]
   const  [openMenu, setOpenMenu] = useState(false)
   return (
-    <div className="dark:bg-slate-900 sm:block bg-slate-200 space-y-6 w-52 h-screen dark:text-slate-50 p-3 fixed top-0 left-0">
+    <div className="dark:bg-slate-900 sm:block bg-slate-300 space-y-6 w-52 
+    h-screen dark:text-slate-50 top-0 left-0 fixed p-3 overflow-y-auto">
 
-        <Link className='flex items-center justify-center' href="#">
+        <button className='flex items-center justify-center px-10' onClick={()=> router.push('/dashboard')}>
           <Image src={logo} alt={"GrocCheck Logo"} className="w-24"/>
-        </Link>
+        </button>
 
         <div className="space-y-3 flex flex-col">
           <Link className = {pathName == "/dashboard" ? "flex items-center space-x-4 py-2 px-2 border-l-4 border-green-500 text-green-500" : "flex items-center space-x-4 py-2 px-2 border-l-4"}
@@ -101,7 +108,7 @@ export default function Sidebar() {
           {openMenu? <ChevronRight /> : <ChevronDown />}
         </button>
         </CollapsibleTrigger>
-        <CollapsibleContent className='rounded-lg px-10 dark:bg-slate-950 bg-slate-300 text-sm py-1'>
+        <CollapsibleContent className='rounded-lg px-10 dark:bg-slate-950 bg-slate-400 text-sm py-1'>
           {
             catalogueLinks.map((item,i)=>{
               return(

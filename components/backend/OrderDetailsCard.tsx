@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function OrderDetailsCard({data}) {
+export default function OrderDetailsCard({data}:any) {
     const {title,number,icon: Icon} = data;
   return (
     <div className="rounded-lg shadow-lg dark:bg-slate-700 bg-white text-slate-900 dark:text-white p-4">
