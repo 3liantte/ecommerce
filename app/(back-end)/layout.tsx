@@ -4,13 +4,11 @@ import Navbar from '@/components/backend/Navbar'
 
 export default function layout({ children } : any) {
   return (
-    <div className='flex'>
-        {/* sidebar */}
-        <Sidebar />
-        <div className="w-full">
+    <div>
+        <div>
             {/* Header */}
             <Navbar />
-            <main className="p-8 bg-slate-100 dark:bg-slate-950 text-slate-50 min-h-screen mt-14 ml-52">
+            <main className="p-8 bg-slate-100 dark:bg-slate-950 text-slate-50 min-h-screen mt-14">
               {children}
             </main>
             {/* Main */}

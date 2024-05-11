@@ -5,7 +5,6 @@ import logo from '../../public/GrocCheck_Logo-removebg.png';
 import Image from 'next/image';
 import { ChevronDown, ChevronRight, Globe2, LayoutDashboard, LogOut, Minus, Settings, ShoppingBasket, Slack, Store, Tractor, User, Users } from 'lucide-react';
 import { usePathname } from 'next/navigation';
-import path from 'path';
 import {
   Collapsible,
   CollapsibleContent,
@@ -78,7 +77,7 @@ export default function Sidebar() {
   ]
   const  [openMenu, setOpenMenu] = useState(false)
   return (
-    <div className="dark:bg-slate-900 sm:block bg-slate-200 space-y-6 w-52 h-screen dark:text-slate-50 p-3 fixed top-0 left-0">
+    <div className="dark:bg-slate-900 sm:block bg-slate-200 space-y-6 w-52 h-screen dark:text-slate-50 top-0 left-0 fixed p-3">
 
         <Link className='flex items-center justify-center' href="#">
           <Image src={logo} alt={"GrocCheck Logo"} className="w-24"/>
