@@ -1,7 +1,7 @@
 import { Layers } from 'lucide-react'
 import React from 'react'
 
-export default function FinanceCard({data}) {
+export default function FinanceCard({data}: any) {
   return (
     <div className={'rounded-lg bg-white dark:bg-slate-700 shadow-md p-8 text-slate-900 dark:text-white flex items-center flex-col gap-2'}>
         {/* Cards */}
