@@ -84,8 +84,12 @@ export default function Sidebar() {
   ]
   const  [openMenu, setOpenMenu] = useState(false)
   return (
+<<<<<<< HEAD
     <div className="dark:bg-slate-900 sm:block bg-slate-300 space-y-6 w-52 
     h-screen dark:text-slate-50 top-0 left-0 fixed p-3 overflow-y-auto">
+=======
+    <div className="dark:bg-slate-900 sm:block bg-slate-200 space-y-6 w-52 h-screen dark:text-slate-50 top-0 left-0 fixed p-3">
+>>>>>>> d7c33498a80446f46b9f26894424b38e88b48b8d
 
         <button className='flex items-center justify-center px-10' onClick={()=> router.push('/dashboard')}>
           <Image src={logo} alt={"GrocCheck Logo"} className="w-24"/>
