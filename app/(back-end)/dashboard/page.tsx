@@ -1,5 +1,5 @@
 import CustomerDataTable from "@/components/backend/CustomerDataTable";
-import FinanceCards from "@/components/backend/FinanceCards";
+import FinanceCards from "@/components/backend/FinanceCards/FinanceCards";
 import Heading from "@/components/backend/Heading";
 import OrderDetailsCards from "@/components/backend/OrderDetailsCards/OrderDetailsCards";
 import SalesCharts from "@/components/backend/SalesCharts";
