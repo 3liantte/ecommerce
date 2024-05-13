@@ -26,6 +26,7 @@ export default function TextareaInput({
            shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 
            focus:ring-2 dark:bg-transparent dark:text-slate-50
            focus:ring-inset focus:ring-green-600 sm:text-sm sm:leading-6"
+           placeholder={`Type ${label.toLowerCase()}`}
           defaultValue={""}
         />
         {errors[`${name}`] && (

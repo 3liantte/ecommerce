@@ -1,8 +1,8 @@
 import CustomerDataTable from "@/components/backend/CustomerDataTable";
 import FinanceCards from "@/components/backend/FinanceCards/FinanceCards";
-import Heading from "@/components/backend/Heading";
+import Heading from "@/components/backend/Heading/Heading";
 import OrderDetailsCards from "@/components/backend/OrderDetailsCards/OrderDetailsCards";
-import SalesCharts from "@/components/backend/SalesCharts";
+import SalesCharts from "@/components/backend/SalesCharts/SalesCharts";
 import React from "react";
 
 export default function page() {

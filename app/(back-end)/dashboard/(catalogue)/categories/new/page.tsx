@@ -1,19 +1,25 @@
 "use client"
 
-import FormHeader from '@/components/backend/FormHeader'
+import FormHeader from '@/components/backend/FormInputs/FormHeader'
+import ImageInput from '@/components/backend/FormInputs/ImageInput'
 import SubmitButton from '@/components/backend/FormInputs/SubmitButton'
 import TextareaInput from '@/components/backend/FormInputs/TextAreaInput'
 import TextInput from '@/components/backend/FormInputs/TextsInput'
 import { generateSlug } from '@/lib/generateSlug'
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 export default function NewCategory() {
   // inside the TextInput all functions are exported from FormInputs
+  
   const {register,handleSubmit,formState:{errors}} = useForm();
+  const [imageUrl, setImageUrl] = useState("");
   async function onSubmit(data: any) {
+    // Skimmer
+    // { id => auto(), title = "", slug => auto(), description = "", image = "", }
     const slug = generateSlug(data.title)
-    data.slug = slug
+    data.slug = slug;
+    data.imageUrl = imageUrl;
     console.log(data);
   }
   return (
@@ -36,7 +42,11 @@ export default function NewCategory() {
               name="description"
               register={register}
               errors={errors}
-          />          
+          />
+            <ImageInput imageUrl={imageUrl} 
+              setImageUrl={setImageUrl} 
+              label="Category Image" 
+              endpoint="categoryImageUploader" />
           </div>
           <SubmitButton 
           isLoading={false} 

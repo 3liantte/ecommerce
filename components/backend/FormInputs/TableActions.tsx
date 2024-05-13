@@ -5,12 +5,12 @@ export default function TableActions() {
   return (
     <div>
       <div className="flex justify-between py-6 px-8 
-      bg-slate-700 rounded-lg items-center gap-10 mt-8">
+      dark:bg-slate-700 bg-slate-400 rounded-lg items-center gap-10 mt-8">
         <button className="relative inline-flex items-center justify-center 
         p-0.5 py-3 px-4 text-base space-x-3 font-medium rounded-lg 
          dark:text-white  border-green-500 border
         focus:ring-2 focus:outline-none focus:ring-green-300 
-        dark:focus:ring-green-800">
+        dark:focus:ring-green-800 bg-slate-600 dark:bg-slate-800">
           <Download />
           <span>Export</span>
         </button>

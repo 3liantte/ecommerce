@@ -7,8 +7,8 @@ import {
   LogOut,
 } from "lucide-react";
 import React, { useState } from "react";
-import Profile from "../../public/Profile.png";
-import Img from "../../public/img1.jpg";
+import Profile from "../../../public/Profile.png";
+import Img from "../../../public/img1.jpg"
 import Image from "next/image";
 import {
   DropdownMenu,
@@ -18,7 +18,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import ThemeSwitcher from "../ThemeSwitch";
+import ThemeSwitcher from "../../ThemeSwitch";
 import Sidebar from "./Sidebar";
 
 export default function Navbar() {

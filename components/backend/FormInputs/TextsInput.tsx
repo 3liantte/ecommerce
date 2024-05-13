@@ -29,7 +29,7 @@ export default function TextInput({
             shadow-sm ring-1 ring-inset dark:bg-transparent dark:text-slate-50
             ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset 
             focus:ring-green-600 sm:text-sm sm:leading-6"
-            placeholder={`Type the ${label.toLowerCase()}`}
+            placeholder={`Type ${label.toLowerCase()}`}
           />
           {errors[`${name}`] && (
             <span className="text-sm text-red-600 ">{label} is required</span>

@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
-import logo from "../../public/GrocCheck_Logo-removebg.png";
+import logo from "../../../public/GrocCheck_Logo-removebg.png";
 import Image from "next/image";
 import {
   ChevronDown,
