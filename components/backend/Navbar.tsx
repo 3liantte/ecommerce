@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import ThemeSwitcher from "../ThemeSwitch";
 import Sidebar from "./Sidebar";
+import { motion } from "framer-motion";
 
 export default function Navbar() {
   const [showMenu, setShowMenu] = useState(false);
@@ -74,7 +75,15 @@ export default function Navbar() {
         <DropdownMenu>
           <DropdownMenuTrigger>
             <div className="relative inline-flex items-center p-3 text-sm font-medium text-center text-indigo-800 dark:text-white bg-transparent rounded-lg hover:bg-green-300 dark:hover:bg-green-700">
-              <Bell />
+              <motion.span
+                whileHover={{ scale: 1.2, rotate: 10 }}
+                whileTap={{
+                  scale: 0.8,
+                  rotate: -10,
+                }}
+              >
+                <Bell />
+              </motion.span>
               <span className="sr-only">Notifications</span>
               <div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 rounded-full -top-0.5 -end-1 dark:border-gray-900">
                 20
@@ -92,7 +101,7 @@ export default function Navbar() {
                 <div className="flex">
                   <Image
                     src={Img}
-                    alt="img1.jpg"
+                    alt="Profile"
                     width={250}
                     height={250}
                     className="w-7 h-7 rounded-full"
@@ -143,7 +152,7 @@ export default function Navbar() {
         {/* User Img / Icon */}
         <DropdownMenu>
           <DropdownMenuTrigger>
-            <div className="relative inline-flex items-center p-4 font-medium text-center text-white bg-transparent rounded-lg hover:bg-green-300 dark:hover:bg-green-700">
+            <div className="relative inline-flex items-center p-3 my-2 font-medium text-center text-white bg-transparent rounded-lg hover:bg-green-300 dark:hover:bg-green-700">
               <Image
                 src={Profile}
                 alt="profile"
