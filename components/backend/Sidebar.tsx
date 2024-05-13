@@ -6,19 +6,24 @@ import Image from "next/image";
 import {
   ChevronDown,
   ChevronRight,
+  FileBox,
+  Flag,
   Globe2,
   LayoutDashboard,
   LogOut,
   Minus,
   Settings,
+  ShoppingBag,
   ShoppingBasket,
   Slack,
   Store,
+  Tag,
+  Ticket,
   Tractor,
   User,
   Users,
 } from "lucide-react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
   Collapsible,
   CollapsibleContent,
@@ -26,6 +31,8 @@ import {
 } from "@/components/ui/collapsible";
 
 export default function Sidebar() {
+  const router = useRouter();
+  const [openMenu, setOpenMenu] = useState(false);
   const pathName = usePathname();
   const sidebarLinks = [
     {
@@ -64,6 +71,7 @@ export default function Sidebar() {
       href: "/dashboard/online store",
     },
   ];
+
   const catalogueLinks = [
     { title: "Products", icon: ShoppingBag, href: "/dashboard/products" },
     { title: "Categories", icon: FileBox, href: "/dashboard/categories" },
@@ -71,6 +79,10 @@ export default function Sidebar() {
     { title: "Coupons", icon: Ticket, href: "/dashboard/coupons" },
     { title: "Banners", icon: Flag, href: "/dashboard/banners" },
   ];
+
+  const handleLogout = () => {
+    router.push("/");
+  };
 
   return (
     <div className="dark:bg-slate-900 sm:block bg-slate-200 space-y-6 w-52 h-screen dark:text-slate-50 top-0 left-0 fixed p-3">
