@@ -1,11 +1,11 @@
-import CustomerDataTable from '@/components/backend/CustomerDataTable'
-import FinanceCards from '@/components/backend/FinanceCards'
-import Heading from '@/components/backend/Heading'
-import OrderDetailsCards from '@/components/backend/OrderDetailsCards'
-import SalesCharts from '@/components/backend/SalesCharts'
-import React from 'react'
+import CustomerDataTable from "@/components/backend/CustomerDataTable";
+import FinanceCards from "@/components/backend/FinanceCards";
+import Heading from "@/components/backend/Heading";
+import OrderDetailsCards from "@/components/backend/OrderDetailsCards";
+import SalesCharts from "@/components/backend/SalesCharts";
+import React from "react";
 
-export default function page(){
+export default function page() {
   return (
     <div>
       <Heading title="Dashboard Overview" />
@@ -16,7 +16,7 @@ export default function page(){
       {/* Sales Chart Overview */}
       <SalesCharts />
       {/* Recent Customer Orders Table */}
-      < CustomerDataTable />
+      <CustomerDataTable />
     </div>
-  )
+  );
 }
