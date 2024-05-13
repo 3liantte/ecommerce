@@ -29,6 +29,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
+import { motion } from "framer-motion";
 
 export default function Sidebar() {
   const router = useRouter();
@@ -113,6 +114,7 @@ export default function Sidebar() {
           </CollapsibleTrigger>
           <CollapsibleContent className="rounded-lg px-10 dark:bg-slate-950 bg-slate-300 text-sm py-1">
             {catalogueLinks.map((item, i) => {
+              const Icon = item.icon;
               return (
                 <Link
                   key={i}
@@ -123,7 +125,10 @@ export default function Sidebar() {
                   }
                   href={item.href}
                 >
-                  <span>{item.title}</span>
+                  <span className="flex items-center gap-2">
+                    <Icon size={15} />
+                    <span>{item.title}</span>
+                  </span>
                 </Link>
               );
             })}
@@ -146,13 +151,14 @@ export default function Sidebar() {
           );
         })}
 
-        <button
+        <motion.button
+          whileTap={{ scale: 1.1 }}
           onClick={handleLogout}
           className="px-6 py-3.5 space-x-2 text-base font-medium text-white inline-flex items-center bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 rounded-lg text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
         >
           <LogOut />
           <span>Log Out</span>
-        </button>
+        </motion.button>
       </div>
     </div>
   );
