@@ -1,38 +1,18 @@
-import React from "react";
+"use client"
+import { UploadDropzone } from "@/lib/uploadthing";
 import { Pencil } from "lucide-react";
 import Image from "next/image";
+import React from "react";
 import toast from "react-hot-toast";
-import { UploadDropzone } from "@/lib/uploadthing";
+import { UploadThingError } from "uploadthing/server";
 
-interface ImageInputProps {
-  label: string;
-  imageUrl?: string;
-  setImageUrl: React.Dispatch<React.SetStateAction<string>>;
-  className?: string;
-  endpoint?: string;
-}
-
-const ImageInput: React.FC<ImageInputProps> = ({
-  label,
+export default function ImageInput({ 
+    label ,
   imageUrl = "",
   setImageUrl,
   className = "col-span-full",
   endpoint = "imageUploader",
-}) => {
-  const handleImageUpload = (res: any[]) => {
-    if (res && res.length > 0 && res[0].url) {
-      setImageUrl(res[0].url);
-      toast.success("Image Uploaded");
-    } else {
-      toast.error("Image Upload Failed");
-    }
-  };
-
-  const handleUploadError = (error: Error) => {
-    console.error("Upload Error:", error);
-    toast.error("Image Upload Failed");
-  };
-
+}) {
   return (
     <div className={className}>
       <div className="flex justify-between items-center mb-4">
@@ -46,7 +26,7 @@ const ImageInput: React.FC<ImageInputProps> = ({
           <button
             onClick={() => setImageUrl("")}
             type="button"
-            className="flex space-x-2 bg-slate-900 rounded-md shadow text-slate-50 py-2 px-4"
+            className="flex space-x-2  bg-slate-900 rounded-md shadow text-slate-50  py-2 px-4"
           >
             <Pencil className="w-5 h-5" />
             <span>Change Image</span>
@@ -64,12 +44,17 @@ const ImageInput: React.FC<ImageInputProps> = ({
       ) : (
         <UploadDropzone
           endpoint={endpoint}
-          onClientUploadComplete={handleImageUpload}
-          onUploadError={handleUploadError}
+          onClientUploadComplete={(res) => {
+            setImageUrl(res[0].url);
+            // Do something with the response
+            toast.success("Image Uploaded");
+          }}
+          onUploadError={(error) => {
+            // Do something with the error.
+            toast.success("Image Upload Failed")
+          }}
         />
       )}
     </div>
   );
-};
-
-export default ImageInput;
+}
