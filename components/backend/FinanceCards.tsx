@@ -1,5 +1,5 @@
 import React from "react";
-import FinanceCard from "./FinanceCard";
+import FinanceCard from "./FinanceCards/FinanceCard";
 
 export default function FinanceCards() {
   const orderStats = [
