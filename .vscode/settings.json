@@ -1,10 +1,13 @@
 {
     "cSpell.words": [
+        "clsx",
         "Koketso",
         "lucide",
+        "Navigations",
         "Tastic",
         "Textinput",
-        "Uploadthing"
+        "Uploadthing",
+        "utfs"
     ],
     "cSpell.ignoreWords": [
         "Groc",

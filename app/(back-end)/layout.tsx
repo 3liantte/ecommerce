@@ -1,5 +1,4 @@
 "use client"
-import Sidebar from '@/components/backend/Navigations/Sidebar'
 import Navbar from '@/components/backend/Navigations/Navbar'
 
 export default function layout({ children } : any) {

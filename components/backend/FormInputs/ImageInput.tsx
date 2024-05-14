@@ -4,10 +4,10 @@ import { Pencil } from "lucide-react";
 import Image from "next/image";
 import React from "react";
 import toast from "react-hot-toast";
-import { UploadThingError } from "uploadthing/server";
+
 
 export default function ImageInput({ 
-    label ,
+   label,
   imageUrl = "",
   setImageUrl,
   className = "col-span-full",
@@ -51,7 +51,7 @@ export default function ImageInput({
           }}
           onUploadError={(error) => {
             // Do something with the error.
-            toast.success("Image Upload Failed")
+            toast.error("Upload Failed, Try Again")
           }}
         />
       )}
