@@ -5,6 +5,7 @@ import ImageInput from '@/components/backend/FormInputs/ImageInput'
 import SubmitButton from '@/components/backend/FormInputs/SubmitButton'
 import TextareaInput from '@/components/backend/FormInputs/TextAreaInput'
 import TextInput from '@/components/backend/FormInputs/TextsInput'
+// import { makePostRequest } from '@/lib/apiRequest'
 import { generateSlug } from '@/lib/generateSlug'
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
@@ -12,7 +13,7 @@ import { useForm } from 'react-hook-form'
 export default function NewCategory() {
   // inside the TextInput all functions are exported from FormInputs
   
-  const {register,handleSubmit,formState:{errors}} = useForm();
+  const {register,reset,handleSubmit,formState:{errors}} = useForm();
   const [imageUrl, setImageUrl] = useState("");
   async function onSubmit(data: any) {
     // Skimmer
@@ -21,6 +22,14 @@ export default function NewCategory() {
     data.slug = slug;
     data.imageUrl = imageUrl;
     console.log(data);
+    // makePostRequest( setLoading, 'api/categories', data, 'Category', reset)
+
+    // Struggling to make this apiRequest function work!! For some reason it also
+    // prevents me from uploading the image it keeps on failing whenever i try and run it
+    // Tried renaming the apiRequest.ts to .js it showed no errors
+    // But with the apiRequest.ts it tells me that setLoading is not declared and others as well
+    // noticing that i can't use or mix js and ts components
+    
   }
   return (
     <div>
