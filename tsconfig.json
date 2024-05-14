@@ -21,6 +21,15 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/backend/Sidebar.jsx", "app/(back-end)/layout.tsx", "app/layout.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "components/backend/Sidebar.jsx",
+    "app/(back-end)/layout.tsx",
+    "app/layout.tsx",
+    "app/(back-end)/dashboard/(catalogue)/coupons/server/server.js"
+  ],
   "exclude": ["node_modules"]
 }
