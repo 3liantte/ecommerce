@@ -21,6 +21,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/backend/Sidebar.jsx", "app/(back-end)/layout.tsx", "app/layout.tsx", "lib/apiRequest.ts", "app/(back-end)/dashboard/(catalogue)/categories/new/page.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/backend/Sidebar.jsx", "app/(back-end)/layout.tsx", "app/layout.tsx"],
   "exclude": ["node_modules"]
 }

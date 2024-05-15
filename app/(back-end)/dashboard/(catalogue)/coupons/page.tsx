@@ -1,7 +1,10 @@
-import React from 'react'
+import React from "react";
+import CouponForm from "./SetupFile/CouponForm";
 
-export default function page(){
+export default function page() {
   return (
-    <div>Coupons</div>
-  )
+    <div>
+      <CouponForm />
+    </div>
+  );
 }
