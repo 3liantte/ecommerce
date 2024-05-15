@@ -5,10 +5,11 @@ import {
   LayoutDashboard,
   Settings,
   LogOut,
+  SquarePen,
 } from "lucide-react";
 import React, { useState } from "react";
 import Profile from "../../../public/Profile.png";
-import Img from "../../../public/img1.jpg"
+import Img from "../../../public/img1.jpg";
 import Image from "next/image";
 import {
   DropdownMenu,
@@ -21,6 +22,7 @@ import {
 import ThemeSwitcher from "../../ThemeSwitch";
 import Sidebar from "./Sidebar";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function Navbar() {
   const [showMenu, setShowMenu] = useState(false);
@@ -167,7 +169,15 @@ export default function Navbar() {
             <DropdownMenuSeparator />
             <DropdownMenuItem>
               <LayoutDashboard className="mr-2 h-4 w-4" />
-              <span>Dashboard</span>
+              <Link href={"/dashboard"}>
+                <span>Dashboard</span>
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <SquarePen className="mr-2 h-4 w-4" />
+              <Link href={"/dashboard/admin"}>
+                <span>Admin</span>
+              </Link>
             </DropdownMenuItem>
             <DropdownMenuItem>
               <Settings className="mr-2 h-4 w-4" />

@@ -1,5 +1,5 @@
 import React from "react";
-import CouponForm from "./SetupFile/CouponForm";
+import CouponForm from "./setupfile/CouponForm";
 
 export default function page() {
   return (
