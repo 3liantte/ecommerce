@@ -175,7 +175,7 @@ export default function Navbar() {
             </DropdownMenuItem>
             <DropdownMenuItem>
               <SquarePen className="mr-2 h-4 w-4" />
-              <Link href={"/dashboard/admin"}>
+              <Link href={"/dashboard/admin_coupons"}>
                 <span>Admin</span>
               </Link>
             </DropdownMenuItem>
