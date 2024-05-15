@@ -21,7 +21,7 @@
       "@/*": ["./*"]
     }
   },
-  
+
   "include": [
     "next-env.d.ts",
     "**/*.ts",
@@ -30,10 +30,23 @@
     "components/backend/Sidebar.jsx",
     "app/(back-end)/layout.tsx",
     "app/layout.tsx",
-    "app/(back-end)/dashboard/(catalogue)/coupons/server/server.js"
+    "app/(back-end)/dashboard/(catalogue)/coupons/server/server.js",
+    "lib/generateSlug.ts",
+    "lib/apiRequest.js"
   ],
 
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/backend/Sidebar.jsx", "app/(back-end)/layout.tsx", "app/layout.tsx", "lib/apiRequest.ts", "app/(back-end)/dashboard/(catalogue)/categories/new/page.jsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "components/backend/Sidebar.jsx",
+    "app/(back-end)/layout.tsx",
+    "app/layout.tsx",
+    "lib/apiRequest.js",
+    "app/(back-end)/dashboard/(catalogue)/categories/new/page.jsx",
+    "lib/generateSlug.ts"
+  ],
 
   "exclude": ["node_modules"]
 }

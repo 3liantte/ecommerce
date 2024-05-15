@@ -30,7 +30,7 @@ const CouponsList = ({ search }: { search: string }) => {
   };
 
   return (
-    <div className="">
+    <div className=" bg-slate-200 dark:bg-slate-900  text-slate-900 dark:text-slate-50">
       <table className="w-full border">
         <thead>
           <tr>
