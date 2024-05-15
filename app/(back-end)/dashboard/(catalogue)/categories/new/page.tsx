@@ -29,7 +29,7 @@ export default function NewCategory() {
     // Tried renaming the apiRequest.ts to .js it showed no errors
     // But with the apiRequest.ts it tells me that setLoading is not declared and others as well
     // noticing that i can't use or mix js and ts components
-    
+
   }
   return (
     <div>
