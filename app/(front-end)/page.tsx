@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <div className="flex items-center justify-center flex-col min-h-screen">
       <h2 className="text-6xl mb-8 text-center">
-        Welcome to GrocCheck Markets
+        Welcome to <span className="text-lime-500 font-extrabold">GrocCheck</span> Markets
       </h2>
       <Image
         src={Logo} // Replace with the path to your image
