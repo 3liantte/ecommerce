@@ -5,6 +5,7 @@ import axios from "axios";
 import Header from "@/components/backend/CouponManegement/Header";
 import CreateCoupon from "@/components/backend/CouponManegement/CreateCoupon";
 import CouponsList from "@/components/backend/CouponManegement/CouponsList";
+import Link from "next/link";
 
 const page = () => {
   const [search, setSearch] = useState("");
@@ -27,7 +28,12 @@ const page = () => {
     <div className="p-4">
       <Header totalCoupons={totalCoupons} onSearch={handleSearch} />
       <CreateCoupon />
-      <h2 className="text-2xl my-4">Coupons List</h2>
+      <div className="flex justify-between items-center">
+        <h2 className="text-2xl my-4">Coupons List</h2>
+        <button className="space-x-2 bg-green-500 text-white p-2 rounded-lg hover:bg-green-600">
+          <Link href={"/dashboard/coupons/redeemlist"}>Redeemed List</Link>
+        </button>
+      </div>
       <CouponsList search={search} />
       {/* <h2 className="text-2xl my-4">Redemptions List</h2>
       <RedemptionsList /> */}
