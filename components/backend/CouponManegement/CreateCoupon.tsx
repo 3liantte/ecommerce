@@ -34,7 +34,7 @@ const CreateCoupon = () => {
         </button>
         <button
           onClick={createCoupon}
-          className="flex  space-x-2 bg-green-500 text-white p-2 rounded-lg hover:bg-green-600"
+          className="flex space-x-2 bg-green-500 text-white p-2 rounded-lg hover:bg-green-600"
         >
           <Plus />
           <span>Create Coupon</span>
