@@ -1,11 +1,11 @@
 import { Plus } from "lucide-react";
 import React from "react";
 
-export default function SubmitButton({ 
-    isLoading = false, 
-    buttonTitle, 
-    loadingTitle 
-}:any) {
+export default function SubmitButton({
+  isLoading = false,
+  buttonTitle,
+  loadingTitle,
+}: any) {
   return (
     <div className="sm:col-span-1">
       {isLoading ? (
