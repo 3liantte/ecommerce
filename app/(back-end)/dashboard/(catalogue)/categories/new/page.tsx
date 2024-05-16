@@ -25,7 +25,6 @@ export default function NewCategory() {
     data.imageUrl = imageUrl;
 
     try {
-      // Example API request using axios:
       const response = await axios.post("/api/categories", data);
       console.log("Category created:", response.data);
 

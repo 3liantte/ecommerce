@@ -30,9 +30,7 @@
     "components/backend/Sidebar.jsx",
     "app/(back-end)/layout.tsx",
     "app/layout.tsx",
-    "app/(back-end)/dashboard/(catalogue)/coupons/server/server.js",
-    "lib/generateSlug.ts",
-    "lib/apiRequest.js"
+    "app/(back-end)/dashboard/(catalogue)/coupons/server/server.js"
   ],
 
   "include": [
@@ -43,9 +41,8 @@
     "components/backend/Sidebar.jsx",
     "app/(back-end)/layout.tsx",
     "app/layout.tsx",
-    "lib/apiRequest.js",
-    "app/(back-end)/dashboard/(catalogue)/categories/new/page.jsx",
-    "lib/generateSlug.ts"
+    "lib/apiRequest.ts",
+    "app/(back-end)/dashboard/(catalogue)/categories/new/page.jsx"
   ],
 
   "exclude": ["node_modules"]

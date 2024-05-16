@@ -30,35 +30,63 @@ const CouponsList = ({ search }: { search: string }) => {
   };
 
   return (
-    <div className=" bg-slate-200 dark:bg-slate-900  text-slate-900 dark:text-slate-50">
+    <div className="p-6 rounded-lg bg-slate-200 dark:bg-slate-900  text-slate-900 dark:text-slate-50">
       <table className="w-full border">
         <thead>
           <tr>
-            <th className="border p-2">code</th>
-            <th className="border p-2">Discount</th>
-            <th className="border p-2">Limit</th>
-            <th className="border p-2">Start Date</th>
-            <th className="border p-2">End Date</th>
-            <th className="border p-2">Deal Type</th>
-            <th className="border p-2">Coupon</th>
-            <th className="border p-2">Remaining</th>
+            <th className="border border-slate-900 dark:border-slate-200 p-2">
+              code
+            </th>
+            <th className="border border-slate-900 dark:border-slate-200 p-2">
+              Discount
+            </th>
+            <th className="border border-slate-900 dark:border-slate-200 p-2">
+              Limit
+            </th>
+            <th className="border border-slate-900 dark:border-slate-200 p-2">
+              Start Date
+            </th>
+            <th className="border border-slate-900 dark:border-slate-200 p-2">
+              End Date
+            </th>
+            <th className="border border-slate-900 dark:border-slate-200 p-2">
+              Deal Type
+            </th>
+            <th className="border border-slate-900 dark:border-slate-200 p-2">
+              Coupon
+            </th>
+            <th className="border border-slate-900 dark:border-slate-200 p-2">
+              Remaining
+            </th>
           </tr>
         </thead>
         <tbody>
           {coupon.map((coupon) => (
             <tr key={coupon.code}>
-              <td className="border p-2">{coupon.code}</td>
-              <td className="border p-2">{coupon.discount}</td>
-              <td className="border p-2">{coupon.limit}</td>
-              <td className="border p-2">
+              <td className="border border-slate-900 dark:border-slate-200 p-2">
+                {coupon.code}
+              </td>
+              <td className="border border-slate-900 dark:border-slate-200 p-2">
+                {coupon.discount}
+              </td>
+              <td className="border border-slate-900 dark:border-slate-200 p-2">
+                {coupon.limit}
+              </td>
+              <td className="border border-slate-900 dark:border-slate-200 p-2">
                 {new Date(coupon.startDate).toLocaleDateString()}
               </td>
               <td className="border p-2">
                 {new Date(coupon.endDate).toLocaleDateString()}
               </td>
-              <td className="border p-2">{coupon.dealType}</td>
-              <td className="border p-2">{coupon.couponType}</td>
-              <td className="border p-2">{coupon.remaining}</td>
+              <td className="border border-slate-900 dark:border-slate-200 p-2">
+                {coupon.dealType}
+              </td>
+              <td className="border border-slate-900 dark:border-slate-200 p-2">
+                {coupon.couponType}
+              </td>
+              <td className="border border-slate-900 dark:border-slate-200 p-2">
+                {coupon.remaining}
+              </td>
             </tr>
           ))}
         </tbody>

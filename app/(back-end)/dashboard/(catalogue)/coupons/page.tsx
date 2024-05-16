@@ -6,6 +6,7 @@ import Header from "@/components/backend/CouponManegement/Header";
 import CreateCoupon from "@/components/backend/CouponManegement/CreateCoupon";
 import CouponsList from "@/components/backend/CouponManegement/CouponsList";
 import Link from "next/link";
+import { Ticket } from "lucide-react";
 
 const page = () => {
   const [search, setSearch] = useState("");
@@ -26,17 +27,29 @@ const page = () => {
 
   return (
     <div className="p-4">
+      <h2
+        className="flex space-x-2 items-center my-4 text-slate-950 
+        dark:text-slate-50"
+      >
+        <span>
+          <Ticket size={40} />
+        </span>
+        <span className="font-bold text-3xl">Coupons</span>
+      </h2>
       <Header totalCoupons={totalCoupons} onSearch={handleSearch} />
       <CreateCoupon />
       <div className="flex justify-between items-center">
-        <h2 className="text-2xl my-4">Coupons List</h2>
+        <h2
+          className="text-2xl my-4 text-slate-900 
+        dark:text-slate-50"
+        >
+          Coupons List
+        </h2>
         <button className="space-x-2 bg-green-500 text-white p-2 rounded-lg hover:bg-green-600">
           <Link href={"/dashboard/coupons/redeemlist"}>Redeemed List</Link>
         </button>
       </div>
       <CouponsList search={search} />
-      {/* <h2 className="text-2xl my-4">Redemptions List</h2>
-      <RedemptionsList /> */}
     </div>
   );
 };
