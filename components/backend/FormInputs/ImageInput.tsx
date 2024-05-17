@@ -3,7 +3,7 @@
 import { UploadDropzone } from "@/lib/uploadthing";
 import { Pencil } from "lucide-react";
 import Image from "next/image";
-import React from "react";
+import React, { useCallback } from "react";
 import toast from "react-hot-toast";
 
 export default function ImageInput({
@@ -13,6 +13,22 @@ export default function ImageInput({
   className = "col-span-full",
   endpoint = "imageUploader",
 }) {
+  const handleUploadComplete = useCallback(
+    (res) => {
+      if (res && res.length > 0) {
+        setImageUrl(res[0].url);
+        toast.success("Image Uploaded");
+      } else {
+        toast.error("Upload failed, please try again.");
+      }
+    },
+    [setImageUrl]
+  );
+
+  const handleUploadError = useCallback(() => {
+    toast.error("Upload Failed, Try Again");
+  }, []);
+
   return (
     <div className={className}>
       <div className="flex justify-between items-center mb-4">
@@ -26,7 +42,7 @@ export default function ImageInput({
           <button
             onClick={() => setImageUrl("")}
             type="button"
-            className="flex space-x-2  bg-slate-900 rounded-md shadow text-slate-50  py-2 px-4"
+            className="flex space-x-2 bg-slate-900 rounded-md shadow text-slate-50 py-2 px-4"
           >
             <Pencil className="w-5 h-5" />
             <span>Change Image</span>
@@ -44,15 +60,8 @@ export default function ImageInput({
       ) : (
         <UploadDropzone
           endpoint={endpoint}
-          onClientUploadComplete={(res) => {
-            setImageUrl(res[0].url);
-            // Do something with the response
-            toast.success("Image Uploaded");
-          }}
-          onUploadError={(error) => {
-            // Do something with the error.
-            toast.error("Upload Failed, Try Again");
-          }}
+          onClientUploadComplete={handleUploadComplete}
+          onUploadError={handleUploadError}
         />
       )}
     </div>
