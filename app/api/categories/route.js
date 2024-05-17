@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 
+// This is the api end point for category creation function inside the new categories
+
 export async function POST(request){
     try {
         const { title, slug, imageUrl, description} = await request.json();
@@ -11,6 +13,6 @@ export async function POST(request){
         return NextResponse.json({
             message: "Failed to create category, please try again",
             error
-        }),{status: 404}
+        }),{status: 500}
     }
 }

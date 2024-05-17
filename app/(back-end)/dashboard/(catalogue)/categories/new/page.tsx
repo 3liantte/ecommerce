@@ -15,15 +15,16 @@ export default function NewCategory() {
   
   const {register,reset,handleSubmit,formState:{errors}} = useForm();
   const [imageUrl, setImageUrl] = useState("");
-  const [loading, setLoading] = useState(false)
-  async function onSubmit(data: any) {
+  const [loading, setLoading] = useState(false);
+  async function onSubmit(data:any) {
     // Skimmer
     // { id => auto(), title = "", slug => auto(), description = "", image = "", }
     const slug = generateSlug(data.title);
     data.slug = slug;
     data.imageUrl = imageUrl;
     console.log(data);
-    makePostRequest( setLoading, 'api/categories', data, 'Category', reset)
+    makePostRequest( setLoading, 'api/categories', data, 'Category', reset);
+    setImageUrl("");
 
   }
   return (
@@ -58,6 +59,6 @@ export default function NewCategory() {
           loadingTitle="Creating category, please wait..." />
         </form>
     </div>
-  )
+  );
 }
 
