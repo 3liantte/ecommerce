@@ -34,18 +34,5 @@
     "components/backend/FormInputs/ImageInput.tsx"
 , "lib/utils.js", "lib/uploadthing.js", "lib/generateSlug.js"  ],
 
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts",
-    "components/backend/Sidebar.jsx",
-    "app/(back-end)/layout.tsx",
-    "app/layout.tsx",
-    "lib/apiRequest.ts",
-    "app/(back-end)/dashboard/(catalogue)/categories/new/page.jsx",
-    "components/backend/FormInputs/ImageInput.tsx"
-, "lib/utils.js", "lib/uploadthing.js", "lib/generateSlug.js"  ],
-
   "exclude": ["node_modules"]
 }
