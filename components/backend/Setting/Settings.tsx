@@ -76,6 +76,43 @@ const Settings = () => {
           Add Payment Method
         </button>
       </div>
+      <div className="mb-6">
+        <h2 className="text-xl font-semibold mb-2">Shipping Options</h2>
+        {shippingOptions.map((option, index) => (
+          <div key={index} className="mb-2">
+            <input
+              type="text"
+              value={option}
+              onChange={(e) => handleShippingChange(e, index)}
+              className="border p-2 w-full"
+              placeholder="Enter shipping option"
+            />
+          </div>
+        ))}
+        <button
+          onClick={addShippingOption}
+          className="bg-green-500 text-white p-2 rounded"
+        >
+          Add Shipping Option
+        </button>
+      </div>
+
+      <div className="mb-6">
+        <h2 className="text-xl font-semibold mb-2">Tax Rate</h2>
+        <input
+          type="text"
+          value={taxRate}
+          onChange={handleTaxRateChange}
+          className="border p-2 w-full"
+          placeholder="Enter tax rate"
+        />
+      </div>
+      <button
+        onClick={handleSaveSettings}
+        className="bg-green-500 text-white p-2 rounded"
+      >
+        Save Settings
+      </button>
     </div>
   );
 };
