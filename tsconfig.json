@@ -31,8 +31,11 @@
     "app/(back-end)/layout.tsx",
     "app/layout.tsx",
     "app/(back-end)/dashboard/(catalogue)/coupons/server/server.js",
-    "components/backend/FormInputs/ImageInput.tsx"
-, "lib/utils.js", "lib/uploadthing.js", "lib/generateSlug.js"  ],
+    "components/backend/FormInputs/ImageInput.tsx",
+    "lib/utils.ts",
+    "lib/uploadthing.js",
+    "lib/generateSlug.js"
+  ],
 
   "exclude": ["node_modules"]
 }
