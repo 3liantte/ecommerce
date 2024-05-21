@@ -9,7 +9,6 @@ import { generateSlug } from '@/lib/generateSlug'
 import { makePostRequest } from '@/lib/apiRequest'
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import InputSelection from '@/components/backend/FormInputs/InputSelection'
 import { error } from 'console'
 
 export default function NewCategory() {
@@ -43,14 +42,6 @@ export default function NewCategory() {
               name="title"
               register={register}
               errors={errors}
-            />
-            <InputSelection 
-              label="Select Stock"
-              name="title"
-              register={register}
-              errors={errors}
-              className="w-full"
-              // Function for this section to be created .....
             />
             <TextareaInput
               label="Category Description"
