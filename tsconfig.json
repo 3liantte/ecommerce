@@ -30,17 +30,10 @@
     "components/backend/Sidebar.jsx",
     "app/(back-end)/layout.tsx",
     "app/layout.tsx",
-    "app/(back-end)/dashboard/(catalogue)/coupons/server/server.js",
-<<<<<<< HEAD
-    "components/backend/FormInputs/ImageInput.tsx"
-, "lib/utils.ts", "lib/uploadthing.js", "lib/generateSlug.js"  ],
-=======
-    "components/backend/FormInputs/ImageInput.tsx",
-    "lib/utils.ts",
-    "lib/uploadthing.js",
-    "lib/generateSlug.js"
+    "lib/apiRequest.js",
+    "app/(back-end)/dashboard/(catalogue)/categories/new/page.jsx",
+    "lib/generateSlug.ts"
   ],
->>>>>>> c2f2a6bd637ef6a9f698cfdcf270eda3a4297a88
 
   "exclude": ["node_modules"]
 }
