@@ -1,17 +1,5 @@
 "use client";
 
-<<<<<<< HEAD
-import FormHeader from '@/components/backend/FormInputs/FormHeader'
-import ImageInput from '@/components/backend/FormInputs/ImageInput'
-import SubmitButton from '@/components/backend/FormInputs/SubmitButton'
-import TextareaInput from '@/components/backend/FormInputs/TextAreaInput'
-import TextInput from '@/components/backend/FormInputs/TextsInput'
-import { generateSlug } from '@/lib/generateSlug'
-import { makePostRequest } from '@/lib/apiRequest'
-import React, { useState } from 'react'
-import { useForm } from 'react-hook-form'
-import { error } from 'console'
-=======
 import FormHeader from "@/components/backend/FormInputs/FormHeader";
 import ImageInput from "@/components/backend/FormInputs/ImageInput";
 import SubmitButton from "@/components/backend/FormInputs/SubmitButton";
@@ -22,14 +10,12 @@ import { makePostRequest, makeGetRequest } from "@/lib/apiRequest";
 
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import InputSelection from "@/components/backend/FormInputs/InputSelection";
 
 interface Categrory {
   title: string;
   description: string;
   image: string;
 }
->>>>>>> c2f2a6bd637ef6a9f698cfdcf270eda3a4297a88
 
 export default function NewCategory() {
   // inside the TextInput all functions are exported from FormInputs
@@ -71,28 +57,6 @@ export default function NewCategory() {
         <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
           <TextInput
             label="Category Title"
-<<<<<<< HEAD
-              name="title"
-              register={register}
-              errors={errors}
-            />
-            <TextareaInput
-              label="Category Description"
-              name="description"
-              register={register}
-              errors={errors}
-            />
-            <ImageInput imageUrl={imageUrl} 
-              setImageUrl={setImageUrl} 
-              label="Category Image" 
-              endpoint="categoryImageUploader" />
-          </div>
-          <SubmitButton 
-          isLoading={loading} 
-          buttonTitle="Create Category" 
-          loadingTitle="Creating category, please wait..." />
-        </form>
-=======
             name="title"
             register={register}
             errors={errors}
@@ -128,7 +92,6 @@ export default function NewCategory() {
           ))}
         </ul>
       </div>
->>>>>>> c2f2a6bd637ef6a9f698cfdcf270eda3a4297a88
     </div>
   );
 }
