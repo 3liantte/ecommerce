@@ -57,7 +57,6 @@ app.post("/api/coupon/import", async (req, res) => {
   res.status(201).send(coupon);
 });
 
-// Import coupons from CSV
 app.post("/api/coupons/import", async (req, res) => {
   const results = [];
   fs.createReadStream(req, file.path)
@@ -69,7 +68,6 @@ app.post("/api/coupons/import", async (req, res) => {
     });
 });
 
-// Export coupons to CSV
 app.get("/api/coupons/export", async (req, res) => {
   const coupon = await Coupon.find();
   const fileds = [
