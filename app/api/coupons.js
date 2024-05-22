@@ -1,18 +1,25 @@
 const express = require("express");
-const cors = requir("cors");
+const cors = require("cors");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-const csv = require(csv - parser);
+const csv = require("csv-parser");
 const fs = require("fs");
+const multer = require("multer");
+
+const upload = multer({ dest: "uploads/" });
 
 const app = express();
 
 app.use(cors());
 app.use(bodyParser.json());
 
-mongoose.connect("mongodb://localhost:27017/coupons", {
-  useNewParser: true,
-  useUnifiedTopology: true,
+mongoose.connect("mongodb://localhost:27017/coupons");
+
+const db = mongoose.connection;
+
+db.on("error", console.error.bind(console, "connection error:"));
+db.once("open", () => {
+  console.log("Connected to MongoDB");
 });
 
 const couponSchema = new mongoose.Schema({
@@ -26,20 +33,9 @@ const couponSchema = new mongoose.Schema({
   remaining: Number,
 });
 
-const useSchema = new mongoose.Schema({
-  couponCode: String,
-  takenBy: String,
-  takeDate: Date,
-  status: String,
-  startDate: Date,
-  endDate: Date,
-  cooponContent: String,
-});
-
 const Coupon = mongoose.model("Coupon", couponSchema);
-const User = mongoose.model("User", userSchema);
 
-// Create a new Coupn
+// Create a new Coupon
 app.post("/api/coupon/import", async (req, res) => {
   const { code, discount, limit, startDate, endDate, dealtype, couponType } =
     req.body;
@@ -57,9 +53,9 @@ app.post("/api/coupon/import", async (req, res) => {
   res.status(201).send(coupon);
 });
 
-app.post("/api/coupons/import", async (req, res) => {
+app.post("/api/coupons/import", upload.single("file"), async (req, res) => {
   const results = [];
-  fs.createReadStream(req, file.path)
+  fs.createReadStream(req.file.path)
     .pipe(csv())
     .on("data", (data) => results.push(data))
     .on("end", async () => {
@@ -69,8 +65,8 @@ app.post("/api/coupons/import", async (req, res) => {
 });
 
 app.get("/api/coupons/export", async (req, res) => {
-  const coupon = await Coupon.find();
-  const fileds = [
+  const coupons = await Coupon.find();
+  const fields = [
     "code",
     "discount",
     "limit",
@@ -81,15 +77,15 @@ app.get("/api/coupons/export", async (req, res) => {
     "remaining",
   ];
   const csvData = [
-    fileds.json(","),
-    ...coupon.map((c) => fileds.map((f) => c[f]).json("\n")),
-  ];
+    fields.join(","),
+    ...coupons.map((c) => fields.map((f) => c[f]).join(",")),
+  ].join("\n");
+
   res.header("Content-Type", "text/csv");
   res.attachment("coupons.csv");
   res.send(csvData);
 });
 
-// List coupons with pagination
 app.get("/api/coupons", async (req, res) => {
   const { page = 1, limit = 10, search = "" } = req.query;
   const coupons = await Coupon.find({ code: { $regex: search, $options: "i" } })
