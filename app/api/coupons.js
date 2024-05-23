@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const csv = require("csv-parser");
 const fs = require("fs");
 const multer = require("multer");
+require("dotenv").config();
 
 const upload = multer({ dest: "uploads/" });
 
@@ -13,7 +14,10 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-mongoose.connect("mongodb://localhost:27017/coupons");
+mongoose.connect(process.env.MONGO_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 const db = mongoose.connection;
 

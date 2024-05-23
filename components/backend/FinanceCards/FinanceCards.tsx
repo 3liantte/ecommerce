@@ -21,13 +21,21 @@ export default function FinanceCards() {
     },
   ];
 
+  const colors = ["#ff0019", "#00ff08", "#008cff", "#ffe600"];
+
   return (
     <div
       className="grid grid-cols-1 sm:grid-cols-2
     md:grid-cols-3 lg:grid-cols-4 gap-4 py-6"
     >
       {orderStats.map((item, index) => {
-        return <FinanceCard data={item} key={index} />;
+        return (
+          <FinanceCard
+            data={item}
+            color={colors[index % colors.length]}
+            key={index}
+          />
+        );
       })}
     </div>
   );

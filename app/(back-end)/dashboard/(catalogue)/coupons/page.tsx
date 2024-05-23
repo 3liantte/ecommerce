@@ -17,8 +17,12 @@ const page = () => {
   }, []);
 
   const fetchTotalCoupons = async () => {
-    const res = await axios.get("http://localhost:5000/api/coupons");
-    setTotalCoupons(res.data.coupons.length);
+    try {
+      const res = await axios.get("http://localhost:5000/api/coupons");
+      setTotalCoupons(res.data.length);
+    } catch (error) {
+      console.log("Error fetching total coupons", error);
+    }
   };
 
   const handleSearch = (value: string) => {
