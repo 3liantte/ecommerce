@@ -10,6 +10,8 @@ import { makePostRequest, makeGetRequest } from "@/lib/apiRequest";
 
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import SelectInputs from "@/components/backend/FormInputs/SelectInputs";
+import { title } from "process";
 
 interface Categrory {
   title: string;
@@ -27,6 +29,24 @@ export default function NewCategory() {
     formState: { errors },
   } = useForm();
   const [imageUrl, setImageUrl] = useState("");
+  const markets = [
+    {
+      id: 1,
+      title: "Shoprite"
+    },
+    {
+      id: 2,
+      title: "Boxer"
+    },
+    {
+      id: 3,
+      title: "Roots"
+    },
+    {
+      id: 4,
+      title: "OBC"
+    },
+  ]
   const [loading, setLoading] = useState(false);
   const [categories, setCategories] = useState<Categrory[]>([]);
   const [error, setError] = useState(null);
@@ -60,6 +80,15 @@ export default function NewCategory() {
             name="title"
             register={register}
             errors={errors}
+          />
+          <SelectInputs 
+            label="Select Market"
+            name = "marketId"
+            register = {register}
+            errors = {errors}
+            className = "w-full"
+            options={markets}
+            multiple={false}
           />
           <TextareaInput
             label="Category Description"
