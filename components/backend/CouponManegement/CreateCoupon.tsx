@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Plus } from "lucide-react";
+import toast from "react-hot-toast";
 
 const CreateCoupon = () => {
   const [code, setCode] = useState("");
@@ -24,9 +25,9 @@ const CreateCoupon = () => {
         dealType,
         couponType,
       });
-      alert("Coupon created successfully");
+      toast.success("Coupon created successfully");
     } catch (error) {
-      alert("Error creating coupon");
+      toast.error("Error creating coupon");
       console.error(error);
     }
   };

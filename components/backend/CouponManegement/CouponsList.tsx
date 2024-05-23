@@ -16,26 +16,38 @@ const CouponsList = ({ search }: { search: string }) => {
   const [coupon, setCoupons] = useState<Coupon[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     fetchCoupons();
   }, [currentPage, search]);
 
   const fetchCoupons = async () => {
-    const res = await axios.get(
-      `http://localhost:5000/api/coupons?page=${currentPage}&limit=10&search=${search}`
-    );
-    setCoupons(res.data.coupons);
-    setTotalPages(res.data.tatalPages);
+    try {
+      const res = await axios.get(
+        `http://localhost:5000/api/coupons?page=${currentPage}&limit=10&search=${search}`
+      );
+      setCoupons(res.data.coupons);
+      setTotalPages(res.data.totalPages);
+      setError(null);
+    } catch (err) {
+      setError(
+        "Network Error: Unable to fetch coupons. Please try again later."
+      );
+      console.error(err);
+    }
   };
 
   return (
     <div className="p-6 rounded-lg bg-slate-200 dark:bg-slate-900  text-slate-900 dark:text-slate-50">
+      {error && (
+        <div className="flex justify-center p-2 text-red-500">{error}</div>
+      )}
       <table className="w-full border">
         <thead>
           <tr>
             <th className="border border-slate-900 dark:border-slate-200 p-2">
-              code
+              Code
             </th>
             <th className="border border-slate-900 dark:border-slate-200 p-2">
               Discount
@@ -53,7 +65,7 @@ const CouponsList = ({ search }: { search: string }) => {
               Deal Type
             </th>
             <th className="border border-slate-900 dark:border-slate-200 p-2">
-              Coupon
+              Coupon Type
             </th>
             <th className="border border-slate-900 dark:border-slate-200 p-2">
               Remaining
