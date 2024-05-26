@@ -32,21 +32,21 @@ export default function NewCategory() {
   const markets = [
     {
       id: 1,
-      title: "Shoprite"
+      title: "Shoprite",
     },
     {
       id: 2,
-      title: "Boxer"
+      title: "Boxer",
     },
     {
       id: 3,
-      title: "Roots"
+      title: "Roots",
     },
     {
       id: 4,
-      title: "OBC"
+      title: "OBC",
     },
-  ]
+  ];
   const [loading, setLoading] = useState(false);
   const [categories, setCategories] = useState<Categrory[]>([]);
   const [error, setError] = useState(null);
@@ -81,12 +81,12 @@ export default function NewCategory() {
             register={register}
             errors={errors}
           />
-          <SelectInputs 
+          <SelectInputs
             label="Select Market"
-            name = "marketId"
-            register = {register}
-            errors = {errors}
-            className = "w-full"
+            name="marketId"
+            register={register}
+            errors={errors}
+            className="w-full"
             options={markets}
             multiple={false}
           />
@@ -109,18 +109,6 @@ export default function NewCategory() {
           loadingTitle="Creating category, please wait..."
         />
       </form>
-      <div>
-        <h2>C</h2>
-        {loading && <p>Loading</p>}
-        {error && <p>{error}</p>}
-        <ul>
-          {categories.map((category, index) => (
-            <li key={index}>
-              {category.title} - {category.description}
-            </li>
-          ))}
-        </ul>
-      </div>
     </div>
   );
 }
