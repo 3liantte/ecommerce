@@ -8,22 +8,33 @@ import CouponsList from "@/components/backend/CouponManegement/CouponsList";
 import Link from "next/link";
 import { Ticket } from "lucide-react";
 
+interface Coupon {
+  id: string;
+  value: number;
+}
+
 const page = () => {
   const [search, setSearch] = useState("");
   const [totalCoupons, setTotalCoupons] = useState(0);
 
   useEffect(() => {
-    fetchTotalCoupons();
-  }, []);
+    const fetchCoupons = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/api/coupons");
+        const coupons: Coupon[] = response.data;
 
-  const fetchTotalCoupons = async () => {
-    try {
-      const res = await axios.get("http://localhost:5000/api/coupons");
-      setTotalCoupons(res.data.length);
-    } catch (error) {
-      console.log("Error fetching total coupons", error);
-    }
-  };
+        const total = coupons.reduce(
+          (sum: number, coupon: Coupon) => sum + coupon.value,
+          0
+        );
+        setTotalCoupons(total);
+      } catch (error) {
+        console.error("Error fetching coupons:", error);
+      }
+    };
+
+    fetchCoupons();
+  }, []);
 
   const handleSearch = (value: string) => {
     setSearch(value);
