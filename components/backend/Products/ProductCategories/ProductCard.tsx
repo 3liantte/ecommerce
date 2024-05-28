@@ -5,6 +5,7 @@ interface Product {
   price: number;
   description?: string;
   imageUrl?: string;
+  category: string;
 }
 
 const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
@@ -19,12 +20,19 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
       )}
 
       <div className="p-4">
-        <h2 className="text-lg font-semibold text-green-500">{product.name}</h2>
+        <div className="flex items-center mb-2">
+          <h2 className="text-lg font-semibold text-green-800">
+            {product.name}
+          </h2>
+          <span className="ml-2 px-2 inline-block text-sm font-semibold text-white bg-green-500 rounded-md">
+            {product.category}
+          </span>
+        </div>
 
-        <p className="mt-2 text-slate-600">R {product.price}</p>
+        <p className="text-gray-600">${product.price}</p>
 
         {product.description && (
-          <p className="mt-2 text-sm text-slate-600">{product.description}</p>
+          <p className="mt-2 text-sm text-gray-600">{product.description}</p>
         )}
 
         <div className="mt-4 flex justify-end">
