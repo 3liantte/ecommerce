@@ -120,7 +120,7 @@ export default function Navbar() {
                       href="#"
                       className="inline-flex px-2.5 py-1.5 text-xs font-medium text-center text-white bg-green-600 rounded-lg hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-800"
                     >
-                      {" "}
+                      Reply
                     </a>
                   </div>
                   <button
@@ -185,7 +185,10 @@ export default function Navbar() {
             </DropdownMenuItem>
             <DropdownMenuItem>
               <LogOut className="mr-2 h-4 w-4" />
-              <span>Log Out</span>
+              <Link href={"/"}>
+                <span>Log Out</span>
+              </Link>
+
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
