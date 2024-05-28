@@ -6,15 +6,23 @@ import Image from "next/image";
 import React, { useCallback } from "react";
 import toast from "react-hot-toast";
 
+interface ImageInputProps {
+  label: string;
+  imageUrl?: string;
+  setImageUrl: (url: string) => void;
+  className?: string;
+  endpoint?: string;
+}
+
 export default function ImageInput({
   label,
   imageUrl = "",
   setImageUrl,
   className = "col-span-full",
   endpoint = "imageUploader",
-}) {
+}: ImageInputProps) {
   const handleUploadComplete = useCallback(
-    (res) => {
+    (res: { url: string }[]) => {
       if (res && res.length > 0) {
         setImageUrl(res[0].url);
         toast.success("Image Uploaded");
