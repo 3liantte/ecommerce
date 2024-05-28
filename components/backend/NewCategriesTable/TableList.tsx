@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-// Define the Category interface
 interface Category {
   categoryTitle: string;
   categoryDescription: string;
@@ -11,7 +10,6 @@ interface Category {
 }
 
 const TableList = () => {
-  // State variables for categories, loading state, and error handling
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -21,7 +19,7 @@ const TableList = () => {
       try {
         const baseUrl =
           process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
-        const endpoint = "api/categories"; // API endpoint
+        const endpoint = "api/categories";
         const response = await axios.get<Category[]>(`${baseUrl}/${endpoint}`);
         setCategories(response.data);
       } catch (err) {

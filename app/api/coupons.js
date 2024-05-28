@@ -15,8 +15,7 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-const mongoUrl =
-  "mongodb+srv://grocerycheckza:4KQjes0amIrGqaqq@grocerycheck.9n1b0x3.mongodb.net/";
+const mongoUrl = process.env.MONGO_URL;
 if (!mongoUrl) {
   console.error("Error: MONGO_URL is not defined in .env file");
   process.exit(1);
