@@ -24,12 +24,12 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
           <h2 className="text-lg font-semibold text-green-800">
             {product.name}
           </h2>
-          <span className="ml-2 px-2 inline-block text-sm font-semibold text-white bg-green-500 rounded-md">
+          <span className="ml-2 px-2 inline-block text-sm font-semibold text-white shadow-md bg-green-500 rounded-md">
             {product.category}
           </span>
         </div>
 
-        <p className="text-gray-600">${product.price}</p>
+        <p className="text-gray-600">R {product.price}</p>
 
         {product.description && (
           <p className="mt-2 text-sm text-gray-600">{product.description}</p>
