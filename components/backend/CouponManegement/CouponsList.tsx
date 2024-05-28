@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Trash2, Pen } from "lucide-react";
+import toast from "react-hot-toast";
 
 interface Coupon {
+  _id: string;
   code: string;
   discount: number;
   limit: string;
@@ -13,7 +16,7 @@ interface Coupon {
 }
 
 const CouponsList = ({ search }: { search: string }) => {
-  const [coupon, setCoupons] = useState<Coupon[]>([]);
+  const [coupons, setCoupons] = useState<Coupon[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [error, setError] = useState<string | null>(null);
@@ -27,6 +30,7 @@ const CouponsList = ({ search }: { search: string }) => {
       const res = await axios.get(
         `http://localhost:5000/api/coupons?page=${currentPage}&limit=10&search=${search}`
       );
+      console.log("Coupons fetched:", res.data.coupons);
       setCoupons(res.data.coupons);
       setTotalPages(res.data.totalPages);
       setError(null);
@@ -38,8 +42,55 @@ const CouponsList = ({ search }: { search: string }) => {
     }
   };
 
+  const deleteCoupon = async (id: string) => {
+    try {
+      await axios.delete(`http://localhost:5000/api/coupons/${id}`);
+      toast.success("Coupon deleted successfully");
+      fetchCoupons();
+    } catch (error) {
+      toast.error("Error deleting coupon");
+      console.error(error);
+    }
+  };
+
+  const updateCoupon = async (id: string, updatedCoupon: Partial<Coupon>) => {
+    try {
+      const {
+        code,
+        discount,
+        limit,
+        startDate,
+        endDate,
+        dealType,
+        couponType,
+        remaining,
+      } = updatedCoupon;
+
+      const remainingNum =
+        typeof remaining === "string" ? parseInt(remaining, 10) : remaining;
+
+      const updatedData: Partial<Coupon> = {
+        code,
+        discount,
+        limit,
+        startDate,
+        endDate,
+        dealType,
+        couponType,
+        remaining: remainingNum,
+      };
+
+      await axios.put(`http://localhost:5000/api/coupons/${id}`, updatedData);
+      toast.success("Coupon updated successfully");
+      fetchCoupons();
+    } catch (error) {
+      toast.error("Error updating coupon");
+      console.error(error);
+    }
+  };
+
   return (
-    <div className="p-6 rounded-lg bg-slate-200 dark:bg-slate-900  text-slate-900 dark:text-slate-50">
+    <div className="p-6 rounded-lg bg-slate-200 dark:bg-slate-900 text-slate-900 dark:text-slate-50">
       {error && (
         <div className="flex justify-center p-2 text-red-500">{error}</div>
       )}
@@ -70,11 +121,14 @@ const CouponsList = ({ search }: { search: string }) => {
             <th className="border border-slate-900 dark:border-slate-200 p-2">
               Remaining
             </th>
+            <th className="border border-slate-900 dark:border-slate-200 p-2">
+              Actions
+            </th>
           </tr>
         </thead>
         <tbody>
-          {coupon.map((coupon) => (
-            <tr key={coupon.code}>
+          {coupons.map((coupon) => (
+            <tr key={coupon._id}>
               <td className="border border-slate-900 dark:border-slate-200 p-2">
                 {coupon.code}
               </td>
@@ -87,7 +141,7 @@ const CouponsList = ({ search }: { search: string }) => {
               <td className="border border-slate-900 dark:border-slate-200 p-2">
                 {new Date(coupon.startDate).toLocaleDateString()}
               </td>
-              <td className="border p-2">
+              <td className="border border-slate-900 dark:border-slate-200 p-2">
                 {new Date(coupon.endDate).toLocaleDateString()}
               </td>
               <td className="border border-slate-900 dark:border-slate-200 p-2">
@@ -98,6 +152,31 @@ const CouponsList = ({ search }: { search: string }) => {
               </td>
               <td className="border border-slate-900 dark:border-slate-200 p-2">
                 {coupon.remaining}
+              </td>
+              <td className="flex justify-between border border-slate-900 dark:border-slate-200 p-2">
+                <button
+                  onClick={() =>
+                    updateCoupon(coupon._id, {
+                      code: coupon.code,
+                      discount: coupon.discount,
+                      limit: coupon.limit,
+                      startDate: coupon.startDate,
+                      endDate: coupon.endDate,
+                      dealType: coupon.dealType,
+                      couponType: coupon.couponType,
+                      remaining: coupon.remaining,
+                    })
+                  }
+                  className="bg-green-500 text-white p-1 rounded-lg hover:bg-green-600 mr-2"
+                >
+                  <Pen />
+                </button>
+                <button
+                  onClick={() => deleteCoupon(coupon._id)}
+                  className="bg-red-500 text-white p-1 rounded-lg hover:bg-red-600"
+                >
+                  <Trash2 />
+                </button>
               </td>
             </tr>
           ))}

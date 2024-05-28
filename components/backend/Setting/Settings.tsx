@@ -4,7 +4,7 @@ import React, { useState } from "react";
 
 const Settings = () => {
   const [paymentMethods, setPaymentMethods] = useState<string[]>([
-    "Cresit Card",
+    "Credit Card",
     "PayPal",
   ]);
   const [shippingOptions, setShippingOptions] = useState<string[]>([
@@ -18,9 +18,9 @@ const Settings = () => {
     event: React.ChangeEvent<HTMLInputElement>,
     index: number
   ) => {
-    const newPaymentMehtods = [...paymentMethods];
-    newPaymentMehtods[index] = event.target.value;
-    setPaymentMethods(newPaymentMehtods);
+    const newPaymentMethods = [...paymentMethods];
+    newPaymentMethods[index] = event.target.value;
+    setPaymentMethods(newPaymentMethods);
   };
 
   const addPaymentMethod = () => {
@@ -53,63 +53,72 @@ const Settings = () => {
   };
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Setting</h1>
+    <div className="container mx-auto p-4 md:p-8 lg:p-12">
+      <h1 className="text-3xl font-bold mb-6">Settings</h1>
 
-      <div className="mb-6">
-        <h2 className="text-xl font-semibold mb-2">Payment Methods</h2>
-        {paymentMethods.map((method, index) => (
-          <div key={index} className="mb-2">
-            <input
-              type="text"
-              value={method}
-              onChange={(e) => handlePaymentChange(e, index)}
-              className="border p-2 w-full"
-              placeholder="Enter payment method"
-            />
-          </div>
-        ))}
-        <button
-          onClick={addPaymentMethod}
-          className="bg-green-500 text-slate-50 p-2 rounded"
-        >
-          Add Payment Method
-        </button>
-      </div>
-      <div className="mb-6">
-        <h2 className="text-xl font-semibold mb-2">Shipping Options</h2>
-        {shippingOptions.map((option, index) => (
-          <div key={index} className="mb-2">
-            <input
-              type="text"
-              value={option}
-              onChange={(e) => handleShippingChange(e, index)}
-              className="border p-2 w-full"
-              placeholder="Enter shipping option"
-            />
-          </div>
-        ))}
-        <button
-          onClick={addShippingOption}
-          className="bg-green-500 text-white p-2 rounded"
-        >
-          Add Shipping Option
-        </button>
+      <div className="grid grid-cols-2 gap-4">
+        {" "}
+        <div className="mb-8">
+          <h2 className="text-2xl font-semibold mb-4">Payment Methods</h2>
+          {paymentMethods.map((method, index) => (
+            <div
+              key={index}
+              className="mb-4 flex flex-col md:flex-row md:items-center"
+            >
+              <input
+                type="text"
+                value={method}
+                onChange={(e) => handlePaymentChange(e, index)}
+                className="border p-3 w-full md:w-auto md:flex-grow rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-500"
+                placeholder="Enter payment method"
+              />
+            </div>
+          ))}
+          <button
+            onClick={addPaymentMethod}
+            className="bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-md transition-colors duration-300"
+          >
+            Add Payment Method
+          </button>
+        </div>
+        <div className="mb-8">
+          <h2 className="text-2xl font-semibold mb-4">Shipping Options</h2>
+          {shippingOptions.map((option, index) => (
+            <div
+              key={index}
+              className="mb-4 flex flex-col md:flex-row md:items-center"
+            >
+              <input
+                type="text"
+                value={option}
+                onChange={(e) => handleShippingChange(e, index)}
+                className="border p-3 w-full md:w-auto md:flex-grow rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-500"
+                placeholder="Enter shipping option"
+              />
+            </div>
+          ))}
+          <button
+            onClick={addShippingOption}
+            className="bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-md transition-colors duration-300"
+          >
+            Add Shipping Option
+          </button>
+        </div>
       </div>
 
-      <div className="mb-6">
-        <h2 className="text-xl font-semibold mb-2">Tax Rate</h2>
+      <div className="mb-8">
+        <h2 className="text-2xl font-semibold mb-4">Tax Rate</h2>
         <input
           type="text"
           value={taxRate}
           onChange={handleTaxRateChange}
-          className="border p-2 w-full"
+          className="border p-3 w-full rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-500"
           placeholder="Enter tax rate"
         />
       </div>
       <button
         onClick={handleSaveSettings}
-        className="bg-green-500 text-white p-2 rounded"
+        className="bg-green-600 hover:bg-green-700 text-white p-3 w-full md:w-auto rounded-md transition-colors duration-300"
       >
         Save Settings
       </button>
