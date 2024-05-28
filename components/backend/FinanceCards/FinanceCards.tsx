@@ -21,7 +21,7 @@ export default function FinanceCards() {
     },
   ];
 
-  const colors = ["#ff0019", "#00ff08", "#008cff", "#ffe600"];
+  const colors = ["#ff0019", "#32CD32", "#008cff", "#ffe700"];
 
   return (
     <div
