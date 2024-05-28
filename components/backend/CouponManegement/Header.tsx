@@ -42,7 +42,7 @@ const Header = ({
   };
 
   return (
-    <div className="flex justify-between items-center p-4 bg-slate-200 dark:bg-slate-900  text-slate-900 dark:text-slate-50 shadow rounded-lg">
+    <div className="flex justify-between items-center p-4 bg-slate-200 dark:bg-slate-900 text-slate-900 dark:text-slate-50 shadow rounded-lg">
       <button
         onClick={exportCSV}
         className="cursor-pointer space-x-2 px-6 py-2 text-base font-medium text-white inline-flex items-center bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 rounded-lg dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
@@ -54,7 +54,7 @@ const Header = ({
         <span>Import CSV</span>
         <input type="file" onChange={importCSV} className="hidden" />
       </label>
-      <div className="text-base font-medium px-6 py-2 rounded-lg border border-spacing-2 ">
+      <div className="text-base font-medium px-6 py-2 rounded-lg border border-spacing-2">
         Total Coupons: {totalCoupons}
       </div>
       <SearchInput onSearch={onSearch} />

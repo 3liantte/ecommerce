@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
@@ -5,7 +7,6 @@ const mongoose = require("mongoose");
 const csv = require("csv-parser");
 const fs = require("fs");
 const multer = require("multer");
-require("dotenv").config();
 
 const upload = multer({ dest: "uploads/" });
 
@@ -14,7 +15,14 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-mongoose.connect(process.env.MONGO_URL, {
+const mongoUrl =
+  "mongodb+srv://grocerycheckza:4KQjes0amIrGqaqq@grocerycheck.9n1b0x3.mongodb.net/";
+if (!mongoUrl) {
+  console.error("Error: MONGO_URL is not defined in .env file");
+  process.exit(1);
+}
+
+mongoose.connect(mongoUrl, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -40,21 +48,25 @@ const couponSchema = new mongoose.Schema({
 const Coupon = mongoose.model("Coupon", couponSchema);
 
 // Create a new Coupon
-app.post("/api/coupon/import", async (req, res) => {
-  const { code, discount, limit, startDate, endDate, dealtype, couponType } =
+app.post("/api/coupons", async (req, res) => {
+  const { code, discount, limit, startDate, endDate, dealType, couponType } =
     req.body;
-  const coupon = new Coupon({
-    code,
-    discount,
-    limit,
-    startDate,
-    endDate,
-    dealtype,
-    couponType,
-    remaining: limit,
-  });
-  await coupon.save();
-  res.status(201).send(coupon);
+  try {
+    const coupon = new Coupon({
+      code,
+      discount,
+      limit,
+      startDate,
+      endDate,
+      dealtype: dealType,
+      couponType: couponType,
+      remaining: limit,
+    });
+    await coupon.save();
+    res.status(201).send(coupon);
+  } catch (error) {
+    res.status(400).send({ error: error.message });
+  }
 });
 
 app.post("/api/coupons/import", upload.single("file"), async (req, res) => {
@@ -104,6 +116,29 @@ app.get("/api/coupons", async (req, res) => {
     totalPages: Math.ceil(count / limit),
     currentPage: page,
   });
+});
+
+app.put("/api/coupons/:id", async (req, res) => {
+  const { id } = req.params;
+  const updateData = req.body;
+  try {
+    const updateCoupon = await Coupon.findByIdAndUpdate(id, updateData, {
+      new: true,
+    });
+    res.status(200).send(updateCoupon);
+  } catch (error) {
+    res.status(400).send({ error: error.message });
+  }
+});
+
+app.delete("/api/coupons/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    await Coupon.findByIdAndDelete(id);
+    res.status(200).send({ message: "Coupon deleted successfully" });
+  } catch (error) {
+    res.status(400).send({ error: error.message });
+  }
 });
 
 const PORT = process.env.PORT || 5000;
