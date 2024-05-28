@@ -76,7 +76,7 @@ export default function Navbar() {
         {/* Notification Bell */}
         <DropdownMenu>
           <DropdownMenuTrigger>
-            <div className="relative inline-flex items-center p-3 text-sm font-medium text-center text-indigo-800 dark:text-white bg-transparent rounded-lg hover:bg-green-300 dark:hover:bg-green-700">
+            <div className="relative inline-flex items-center p-3 text-sm font-medium text-center text-green-600 dark:text-green-600 bg-transparent rounded-lg hover:bg-green-300 dark:hover:bg-green-700">
               <motion.span
                 whileHover={{ scale: 1.2, rotate: 10 }}
                 whileTap={{
