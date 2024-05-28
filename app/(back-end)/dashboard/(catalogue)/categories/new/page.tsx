@@ -3,32 +3,42 @@
 import FormHeader from "@/components/backend/FormInputs/FormHeader";
 import ImageInput from "@/components/backend/FormInputs/ImageInput";
 import SubmitButton from "@/components/backend/FormInputs/SubmitButton";
-import TextareaInput from "@/components/backend/FormInputs/TextAreaInput";
-import TextInput from "@/components/backend/FormInputs/TextsInput";
+
+import SelectInputs from "@/components/backend/FormInputs/SelectInputs";
 import { generateSlug } from "@/lib/generateSlug";
 import { makePostRequest, makeGetRequest } from "@/lib/apiRequest";
 
 import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import SelectInputs from "@/components/backend/FormInputs/SelectInputs";
-import { title } from "process";
+import { useForm, FieldErrors } from "react-hook-form";
+import TextInput from "@/components/backend/FormInputs/TextsInput";
+import TextareaInput from "@/components/backend/FormInputs/TextAreaInput";
 
-interface Categrory {
+interface Category {
   title: string;
   description: string;
   image: string;
 }
 
-export default function NewCategory() {
-  // inside the TextInput all functions are exported from FormInputs
+interface FormData {
+  title: string;
+  description: string;
+  marketId: number;
+  imageUrl?: string;
+  slug?: string;
+}
 
+export default function NewCategory() {
   const {
     register,
     reset,
     handleSubmit,
     formState: { errors },
-  } = useForm();
-  const [imageUrl, setImageUrl] = useState("");
+  } = useForm<FormData>();
+  const [imageUrl, setImageUrl] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [error, setError] = useState<string | null>(null);
+
   const markets = [
     {
       id: 1,
@@ -47,17 +57,20 @@ export default function NewCategory() {
       title: "OBC",
     },
   ];
-  const [loading, setLoading] = useState(false);
-  const [categories, setCategories] = useState<Categrory[]>([]);
-  const [error, setError] = useState(null);
 
-  async function onSubmit(data: any) {
+  async function onSubmit(data: FormData) {
     const slug = generateSlug(data.title);
     data.slug = slug;
     data.imageUrl = imageUrl;
     console.log(data);
-    makePostRequest(setLoading, "api/categories", data, "Category", reset);
-    makeGetRequest(setLoading, "api/categories", setCategories, setError);
+    await makePostRequest(
+      setLoading,
+      "api/categories",
+      data,
+      "Category",
+      reset
+    );
+    await makeGetRequest(setLoading, "api/categories", setCategories, setError);
     setImageUrl("");
   }
 
@@ -70,9 +83,7 @@ export default function NewCategory() {
       <FormHeader title="New Category" />
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="w-full max-w-2xl p-4 bg-slate-300 border
-        border-gray-200 rounded-lg shadow sm:p-6 md:p-8
-        dark:bg-gray-800 dark:border-gray-700 mx-auto my-3"
+        className="w-full max-w-2xl p-4 bg-slate-300 border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 mx-auto my-3"
       >
         <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
           <TextInput
@@ -85,11 +96,15 @@ export default function NewCategory() {
             label="Select Market"
             name="marketId"
             register={register}
-            errors={errors}
             className="w-full"
             options={markets}
             multiple={false}
           />
+          {errors.marketId && (
+            <p className="text-red-600 text-sm mt-1">
+              {errors.marketId.message}
+            </p>
+          )}
           <TextareaInput
             label="Category Description"
             name="description"
