@@ -21,7 +21,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
 
       <div className="p-4">
         <div className="flex items-center mb-2">
-          <h2 className="text-lg font-semibold text-green-800">
+          <h2 className="text-lg font-semibold text-green-500">
             {product.name}
           </h2>
           <span className="ml-2 px-2 inline-block text-sm font-semibold text-white shadow-md bg-green-500 rounded-md">

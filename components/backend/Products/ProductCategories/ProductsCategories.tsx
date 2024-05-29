@@ -1,7 +1,10 @@
-import React from "react";
-import ProductCard from "./ProductCard";
+"use client";
 
-const ProductsList = () => {
+import React, { useState } from "react";
+import ProductCard from "./ProductCard";
+import CategoryFilter from "./CategoryFilter";
+
+const ProductsCategories = () => {
   const products = [
     {
       name: "Rice",
@@ -26,8 +29,8 @@ const ProductsList = () => {
     },
     {
       name: "Maze-Meal",
-      price: 198,
-      description: "Premium quality Maze",
+      price: 195,
+      description: "Premium quality Maze-Meal",
       imageUrl: "/Maze.jpg",
       category: "Staple",
     },
@@ -47,13 +50,36 @@ const ProductsList = () => {
     },
   ];
 
+  const allCategories = [
+    ...new Set(products.map((product) => product.category)),
+  ];
+  const [filteredProducts, setFilteredProducts] = useState(products);
+
+  const handleCategorySelect = (selectedCategory: string | null) => {
+    if (selectedCategory === null) {
+      setFilteredProducts(products);
+    } else {
+      const filtered = products.filter(
+        (product) => product.category === selectedCategory
+      );
+      setFilteredProducts(filtered);
+    }
+  };
+
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      {products.map((product, index) => (
-        <ProductCard key={index} product={product} />
-      ))}
+    <div className="container mx-auto py-6">
+      <CategoryFilter
+        categories={["Staple", "Meat", "Health", "Personal Care", "Seafood"]}
+        onSelectCategory={handleCategorySelect}
+      />
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+        {filteredProducts.map((product, index) => (
+          <ProductCard key={index} product={product} />
+        ))}
+      </div>
     </div>
   );
 };
 
-export default ProductsList;
+export default ProductsCategories;
