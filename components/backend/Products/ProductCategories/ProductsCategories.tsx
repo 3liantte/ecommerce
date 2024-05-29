@@ -1,59 +1,83 @@
 "use client";
 
 import React, { useState } from "react";
+import ProductCard from "./ProductCard";
+import CategoryFilter from "./CategoryFilter";
 
-interface Category {
-  id: number;
-  name: string;
-}
+const ProductsCategories = () => {
+  const products = [
+    {
+      name: "Rice",
+      price: 195,
+      description: "Premium quality rice",
+      imageUrl: "/rice.jpg",
+      category: "Staple",
+    },
+    {
+      name: "Chicken",
+      price: 115,
+      description: "Organic chicken breast",
+      imageUrl: "/chicken.jpg",
+      category: "Meat",
+    },
+    {
+      name: "Coco-Butter",
+      price: 80,
+      description: "Natural coco-butter",
+      imageUrl: "/coco-butter.jpg",
+      category: "Health",
+    },
+    {
+      name: "Maze-Meal",
+      price: 195,
+      description: "Premium quality Maze-Meal",
+      imageUrl: "/Maze.jpg",
+      category: "Staple",
+    },
+    {
+      name: "Soap",
+      price: 50,
+      description: "Gentle cleansing soap",
+      imageUrl: "/soap.jpg",
+      category: "Personal Care",
+    },
+    {
+      name: "Fish",
+      price: 145,
+      description: "Freshly caught fish",
+      imageUrl: "/fish.jpg",
+      category: "Seafood",
+    },
+  ];
 
-const ProductsCategories: React.FC = () => {
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [newCategory, setNewCategory] = useState<string>("");
+  const allCategories = [
+    ...new Set(products.map((product) => product.category)),
+  ];
+  const [filteredProducts, setFilteredProducts] = useState(products);
 
-  const addCategory = () => {
-    if (newCategory.trim() === "") return;
-    const newCat: Category = { id: Date.now(), name: newCategory };
-    setCategories([...categories, newCat]);
-    setNewCategory("");
-  };
-
-  const deleteCategory = (id: number) => {
-    setCategories(categories.filter((category) => category.id !== id));
+  const handleCategorySelect = (selectedCategory: string | null) => {
+    if (selectedCategory === null) {
+      setFilteredProducts(products);
+    } else {
+      const filtered = products.filter(
+        (product) => product.category === selectedCategory
+      );
+      setFilteredProducts(filtered);
+    }
   };
 
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-semibold mb-4">Products Categories</h1>
-      <div className="mb-4">
-        <input
-          type="text"
-          value={newCategory}
-          onChange={(e) => setNewCategory(e.target.value)}
-        />
-        <button
-          onClick={addCategory}
-          className="bg-green-500 text-white p-2 rounded"
-        >
-          Add Category
-        </button>
-      </div>
-      <ul>
-        {categories.map((category) => (
-          <li
-            key={category.id}
-            className="flex justify-between items-center mb-2"
-          >
-            <span>{category.name}</span>
-            <button
-              onClick={() => deleteCategory(category.id)}
-              className="bg-red-500 text-white p-1 rounded"
-            >
-              Delete
-            </button>
-          </li>
+    <div className="container mx-auto py-6">
+      <CategoryFilter
+        categories={["Staple", "Meat", "Health", "Personal Care", "Seafood"]}
+        onSelectCategory={handleCategorySelect}
+      />
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+        {filteredProducts.map((product, index) => (
+          <ProductCard key={index} product={product} />
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
